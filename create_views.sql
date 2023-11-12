@@ -10,19 +10,19 @@ WHERE m.codigo_curso = 1;
 -- 2) Crie uma view que mostre o número de alunos matriculados em cada turma.
 CREATE VIEW ViewAlunosPorTurma AS SELECT t.codigo_tur AS codigo_turma, COUNT(m.numero_matricula) AS qtd_alunos
 FROM turma t
-LEFT JOIN matricula m ON t.codigo_tur = m.codigo_turma
+JOIN matricula m ON t.codigo_tur = m.codigo_turma
 GROUP BY t.codigo_tur;
 
 -- 3) Crie uma view que forneça uma lista de cursos e a contagem de alunos matriculados em cada curso.
 CREATE VIEW ViewCursosComAlunos AS SELECT c.nome_curso, COUNT(m.numero_matricula) AS qtd_alunos
 FROM curso c
-LEFT JOIN matricula m ON c.codigo_curso = m.codigo_curso
+JOIN matricula m ON c.codigo_curso = m.codigo_curso
 GROUP BY c.codigo_curso;
 
 -- 4) Crie uma view que liste as turmas com menos de 30 alunos matriculados.
 CREATE VIEW ViewTurmasComMenosAlunos AS SELECT t.codigo_tur, COUNT(m.numero_matricula) AS qtd_alunos
 FROM turma t
-LEFT JOIN matricula m ON t.codigo_tur = m.codigo_turma
+JOIN matricula m ON t.codigo_tur = m.codigo_turma
 GROUP BY t.codigo_tur HAVING COUNT(m.numero_matricula) < 30;
 
 -- 5) Crie uma view que mostre o histórico de matrículas de um aluno específico, incluindo o nome do curso, a data de início e a data de conclusão (se aplicável).
